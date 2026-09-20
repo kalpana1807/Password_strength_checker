@@ -1,35 +1,21 @@
-# 🔐 Password Security Suite Pro
+# 🔐 Password Strength Checker & Security Suite
 
-Password Security Suite Pro is a desktop application built with Python and Tkinter designed to help users create, evaluate, and manage strong passwords. It evaluates password strength in real time, estimates brute-force cracking difficulty, and checks passwords against leaked databases using the HaveIBeenPwned API.
-
----
+A Python Tkinter desktop application designed to evaluate password strength, estimate brute-force crack time, check for breaches via the HaveIBeenPwned API, and generate secure random passwords.
 
 ## ✨ Features
-
-- **⚡ Real-Time Strength Evaluation:** Visual meter and feedback indicating password strength based on length, digits, casing, and special symbols.
-- **⏱️ Crack-Time Estimator:** Calculates the estimated time required for a brute-force attack against modern hardware.
-- **🔍 Data Breach Verification:** Securely queries the HaveIBeenPwned API using the **k-Anonymity model** (SHA-1 prefix hashing) to check if a password has appeared in known data breaches.
-- **🎲 Customizable Password Generator:** Generate strong, random passwords with configurable length sliders and character selection (uppercase, numbers, symbols).
-- **👁️ Usability Controls:** Toggle password visibility (Show/Hide) and copy generated passwords directly to the system clipboard.
-- **💾 Local Storage:** Option to export and save passwords locally to a text file.
-
----
+- **Real-Time Strength Meter:** Evaluates password complexity instantly.
+- **Crack-Time Estimator:** Calculates brute-force cracking difficulty.
+- **HaveIBeenPwned API Integration:** Checks if a password has appeared in known data breaches using k-Anonymity (SHA-1 hashing).
+- **Custom Password Generator:** Configurable password length and character sets.
+- **Show/Hide Password & Copy to Clipboard:** Easy usability and security.
+- **Local Storage:** Option to save generated passwords locally.
 
 ## 🛠️ Built With
-
 - **Python 3**
-- **Tkinter** (Graphical User Interface)
-- **hashlib & urllib** (SHA-1 hashing and API requests)
-- **re & math** (Regex validation and complexity calculations)
+- **Tkinter** (GUI)
+- **hashlib & urllib** (API requests & SHA-1 hashing)
 
----
-
-## 🚀 Getting Started
-
-### Prerequisites
-Make sure you have Python installed on your system.
-
-### Installation & Execution
-1. Clone this repository:
+## 🚀 How to Run
+1. Clone the repository:
    ```bash
-   git clone [https://github.com/YOUR_USERNAME/password-security-suite.git](https://github.com/YOUR_USERNAME/password-security-suite.git)
+   git clone [https://github.com/YOUR_GITHUB_USERNAME/Password_strength_checker.git](https://github.com/YOUR_GITHUB_USERNAME/Password_strength_checker.git)
