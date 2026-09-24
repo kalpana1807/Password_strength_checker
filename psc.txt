@@ -1,0 +1,94 @@
+import re
+
+def check_password_strength(password):
+    length_error = len(password) < 8
+    digit_error = re.search(r"\d", password) is None
+    uppercase_error = re.search(r"[A-Z]", password) is None
+    lowercase_error = re.search(r"[a-z]", password) is None
+    symbol_error = re.search(r"[!@#$%^&*(),.?\":{}|<>]", password) is None
+    
+    errors = [length_error, digit_error, uppercase_error, lowercase_error, symbol_error]
+    failed_criteria = sum(errors)
+    
+    if failed_criteria == 0:
+        return "Strong", "Aapka password bahut mazboot hai!"
+    elif failed_criteria <= 2:
+        return "Medium", "Password theek hai, par symbols/numbers add karein."
+    else:
+        return "Weak", "Password weak hai! Minimum 8 chars, uppercase, lowercase, numbers aur symbols use karein."
+
+if __name__ == "__main__":
+    user_password = input("Apna password enter karein: ")
+    strength, feedback = check_password_strength(user_password)
+    
+    print(f"\nPassword Strength: {strength}")
+    print(f"Feedback: {feedback}")
+----------------------------------------------------------------------------------------------------------------------------------------
+
+
+import tkinter as tk
+from tkinter import ttk
+import re
+import random
+import string
+
+def check_password_strength(password):
+    length_error = len(password) < 8
+    digit_error = re.search(r"\d", password) is None
+    uppercase_error = re.search(r"[A-Z]", password) is None
+    lowercase_error = re.search(r"[a-z]", password) is None
+    symbol_error = re.search(r"[!@#$%^&*(),.?\":{}|<>]", password) is None
+    
+    errors = [length_error, digit_error, uppercase_error, lowercase_error, symbol_error]
+    failed_criteria = sum(errors)
+    
+    if len(password) == 0:
+        return 0, "Please enter a password!", "gray"
+    elif failed_criteria == 0:
+        return 100, "Strong Password! 💪", "green"
+    elif failed_criteria <= 2:
+        return 60, "Medium Strength. Add numbers or symbols! ⚠️", "orange"
+    else:
+        return 25, "Weak Password! Use 8+ characters, uppercase, lowercase, numbers & symbols! ❌", "red"
+
+def evaluate_password(event=None):
+    password = entry.get()
+    score, feedback, color = check_password_strength(password)
+    
+    progress_bar['value'] = score
+    result_label.config(text=feedback, fg=color)
+
+def generate_strong_password():
+    chars = string.ascii_letters + string.digits + "!@#$%^&*()"
+    strong_pwd = ''.join(random.choice(chars) for _ in range(14))
+    entry.delete(0, tk.END)
+    entry.insert(0, strong_pwd)
+    evaluate_password()
+
+# Window Setup
+root = tk.Tk()
+root.title("Password Strength Checker & Generator")
+root.geometry("450x300")
+root.resizable(False, False)
+
+# Labels and Inputs
+label = tk.Label(root, text="Enter Password:", font=("Arial", 11, "bold"))
+label.pack(pady=(15, 5))
+
+entry = tk.Entry(root, show="*", font=("Arial", 12), width=30)
+entry.pack(pady=5)
+entry.bind("<KeyRelease>", evaluate_password)
+
+# Progress Bar for Visual Strength Indicator
+progress_bar = ttk.Progressbar(root, length=300, mode='determinate')
+progress_bar.pack(pady=10)
+
+# Feedback Result
+result_label = tk.Label(root, text="", font=("Arial", 10), wraplength=380)
+result_label.pack(pady=5)
+
+# Generate Password Button
+generate_btn = tk.Button(root, text="🔑 Generate Strong Password", font=("Arial", 10), command=generate_strong_password, bg="#e1e1e1")
+generate_btn.pack(pady=15)
+
+root.mainloop()
